@@ -13,10 +13,16 @@ import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
 
-//@Configuration
-//@Component
-//@EnableTransactionManagement
-public class DatabaseConfigFaild {
+@Configuration
+@Component
+@EnableTransactionManagement
+public class DatabaseConfigFailed {
+
+//    public static void main(String[] args) throws SQLException {
+//        DataSource dataSource = dataSource();
+//        Connection connection = dataSource.getConnection();
+//        connection.close();
+//    }
 
     public static DataSource dataSource() {
         return createDataSource("127.0.0.1", "3306", "catering", "root", "qwerty");
@@ -33,30 +39,34 @@ public class DatabaseConfigFaild {
             c3p0.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s", address, port, dbName));
             c3p0.setUser(dbUser);
             c3p0.setPassword(dbPassword);
-
-            Properties properties = new Properties();
-            properties.setProperty("useSSL", "false");
-            c3p0.setProperties(properties);
-
             return c3p0;
         } catch (PropertyVetoException e) {
             throw new RuntimeException(e);
         }
     }
 
-//    @Bean
-    public LocalSessionFactoryBean sessionFactory () {
-
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "andrii.data.model" });
-
-        return sessionFactory;
+    @Bean
+    public LocalSessionFactoryBean localSessionFactoryBean() {
+        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
+        localSessionFactoryBean.setDataSource(dataSource());
+        localSessionFactoryBean.setPackagesToScan("andrii");
+        localSessionFactoryBean.setHibernateProperties(hibernateProperties());
+        return localSessionFactoryBean;
     }
 
-//    @Bean
-//    @Autowired
-    public HibernateTransactionManager transactionManager (SessionFactory sessionFactory) {
+    Properties hibernateProperties() {
+        return new Properties() {
+            {
+                setProperty("hibernate.hbm2ddl.auto", "update");
+                setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+                setProperty("hibernate.show_sql", "true");
+            }
+        };
+    }
+
+    @Bean
+    @Autowired
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 
         transactionManager.setSessionFactory(sessionFactory);

@@ -6,10 +6,10 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.context.annotation.Bean;
 
-@org.springframework.context.annotation.Configuration
+//@org.springframework.context.annotation.Configuration
 public class DatabaseConfig {
 
-    @Bean
+//    @Bean
     public SessionFactory getSessionFactory() {
 
         final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()

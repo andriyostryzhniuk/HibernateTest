@@ -6,10 +6,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-@Component
 public class ClientDao {
 
     @Autowired
@@ -23,6 +24,7 @@ public class ClientDao {
         getSession().save(client);
     }
 
+    @Transactional
     public List<Client> getClients() {
         return getSession().createCriteria(Client.class).list();
     }
