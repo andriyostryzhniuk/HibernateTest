@@ -6,18 +6,17 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 @Repository
-//@Component
+@Component
 public class ClientDao {
 
+    @Autowired
     private SessionFactory sessionFactory;
 
-//    @Autowired
     private Session getSession() {
-        return  sessionFactory.getCurrentSession();
+        return sessionFactory.getCurrentSession();
     }
 
     public void save(Client client) {

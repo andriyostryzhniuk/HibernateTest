@@ -8,12 +8,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.stereotype.Component;
-
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
+import java.util.Properties;
 
-@Component
 @Configuration
+@Component
+@EnableTransactionManagement
 public class DatabaseConfig {
 
     public static DataSource dataSource() {
@@ -31,6 +33,11 @@ public class DatabaseConfig {
             c3p0.setJdbcUrl(String.format("jdbc:mysql://%s:%s/%s", address, port, dbName));
             c3p0.setUser(dbUser);
             c3p0.setPassword(dbPassword);
+
+            Properties properties = new Properties();
+            properties.setProperty("useSSL", "false");
+            c3p0.setProperties(properties);
+
             return c3p0;
         } catch (PropertyVetoException e) {
             throw new RuntimeException(e);
@@ -38,18 +45,23 @@ public class DatabaseConfig {
     }
 
     @Bean
-    public SessionFactory sessionFactory () {
+    public LocalSessionFactoryBean sessionFactory () {
+
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan(new String[] { "andrii.data.model" });
 
-        return sessionFactory.getObject();
+        return sessionFactory;
     }
 
     @Bean
-    public HibernateTransactionManager transactionManager () {
+    @Autowired
+    public HibernateTransactionManager transactionManager (SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager();
 
-        transactionManager.setSessionFactory(sessionFactory());
+        transactionManager.setSessionFactory(sessionFactory);
         return transactionManager;
     }
+
+
 }
