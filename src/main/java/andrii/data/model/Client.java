@@ -1,29 +1,27 @@
 package andrii.data.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "client")
+@Table
 public class Client implements Serializable {
 
     @Id
-    @Column(name = "id")
+    @Column
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column
     private String name;
 
-    @Column(name = "address")
+    @Column
     private String address;
 
-    @Column(name = "telephoneNumber")
+    @Column
     private String telephoneNumber;
 
-    @Column(name = "contactPerson")
+    @Column
     private String contactPerson;
 
     public Client() {

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -30,5 +31,16 @@
             </tr>
         </c:forEach>
     </table>
+
+    <br><br>
+    Create client:
+    <br>
+    <form action="/addClient" th:object="${client}" method="post">
+        Name: <input type="text" name="name">
+        Address: <input type="text" name="address">
+        Telephone number: <input type="text" name="telephoneNumber">
+        Contact person: <input type="text" name="contactPerson">
+        <input type="submit" value="Submit">
+    </form>
 </body>
 </html>

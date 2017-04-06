@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
+@Transactional
 public class ClientDao {
 
     @Autowired
@@ -24,7 +25,6 @@ public class ClientDao {
         getSession().save(client);
     }
 
-    @Transactional
     public List<Client> getClients() {
         return getSession().createCriteria(Client.class).list();
     }
