@@ -32,9 +32,7 @@
         </c:forEach>
     </table>
 
-    <br><br>
-    Create client:
-    <br>
+    <br><br>Create client:<br>
     <form action="/addClient" th:object="${client}" method="post">
         Name: <input type="text" name="name">
         Address: <input type="text" name="address">
@@ -42,5 +40,17 @@
         Contact person: <input type="text" name="contactPerson">
         <input type="submit" value="Submit">
     </form>
+
+    <br><br>Update client:<br>
+    <form action="/chooseClient" method="get">
+        Input client's name: <input type="text" name="clientName" value="${clientName}">
+        <input type="submit" value="Submit">
+    </form>
+    <c:if test="${clientToUpdating != null}">
+        <c:import url="updateClient.jsp" >
+            <c:param name="clientToUpdating" value="${clientToUpdating}" />
+        </c:import>
+    </c:if>
+
 </body>
 </html>

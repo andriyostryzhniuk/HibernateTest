@@ -4,9 +4,7 @@ import andrii.data.model.Client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -27,5 +25,9 @@ public class ClientDao {
 
     public List<Client> getClients() {
         return getSession().createCriteria(Client.class).list();
+    }
+
+    public void update(Client client) {
+        getSession().update(client);
     }
 }
