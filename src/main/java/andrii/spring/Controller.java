@@ -15,6 +15,8 @@ public class Controller {
     @RequestMapping(value = "/main")
     public String printMainPage(ModelMap modelMap) {
 
+//        clientDao.getClients().get(0).getOrderings().forEach(ordering -> System.out.println(ordering.getCost()));
+
         modelMap.put("clientList", clientDao.getClients());
         return "mainPage";
     }

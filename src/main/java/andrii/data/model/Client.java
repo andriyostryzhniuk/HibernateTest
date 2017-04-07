@@ -1,7 +1,10 @@
 package andrii.data.model;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table
@@ -12,34 +15,34 @@ public class Client implements Serializable {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 
-    @Column
+    @Column(nullable = false)
     private String name;
 
-    @Column
+    @Column(nullable = false)
     private String address;
 
-    @Column
+    @Column(nullable = false)
     private String telephoneNumber;
 
-    @Column
+    @Column(nullable = false)
     private String contactPerson;
 
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Ordering> orderings;
+
+    @Column
+    private BigDecimal discount;
+
+    @Column
+    private String email;
+
+    @Column
+    private Integer icq;
+
+    @Column
+    private String skype;
+
     public Client() {
-    }
-
-    public Client(String name, String address, String telephoneNumber, String contactPerson) {
-        this.name = name;
-        this.address = address;
-        this.telephoneNumber = telephoneNumber;
-        this.contactPerson = contactPerson;
-    }
-
-    public Client(Integer id, String name, String address, String telephoneNumber, String contactPerson) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-        this.telephoneNumber = telephoneNumber;
-        this.contactPerson = contactPerson;
     }
 
     public Integer getId() {
@@ -80,5 +83,45 @@ public class Client implements Serializable {
 
     public void setContactPerson(String contactPerson) {
         this.contactPerson = contactPerson;
+    }
+
+    public List<Ordering> getOrderings() {
+        return orderings;
+    }
+
+    public void setOrderings(List<Ordering> orderings) {
+        this.orderings = orderings;
+    }
+
+    public BigDecimal getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(BigDecimal discount) {
+        this.discount = discount;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getIcq() {
+        return icq;
+    }
+
+    public void setIcq(Integer icq) {
+        this.icq = icq;
+    }
+
+    public String getSkype() {
+        return skype;
+    }
+
+    public void setSkype(String skype) {
+        this.skype = skype;
     }
 }
