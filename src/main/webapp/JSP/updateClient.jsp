@@ -9,5 +9,5 @@
     Address: <input type="text" name="address" value="${clientToUpdating.address}">
     Telephone number: <input type="text" name="telephoneNumber" value="${clientToUpdating.telephoneNumber}">
     Contact person: <input type="text" name="contactPerson" value="${clientToUpdating.contactPerson}">
-    <input type="submit" value="Submit">
+    <input type="submit" value="Update">
 </form>

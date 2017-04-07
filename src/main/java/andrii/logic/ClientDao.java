@@ -30,4 +30,19 @@ public class ClientDao {
     public void update(Client client) {
         getSession().update(client);
     }
+
+    public void delete(Client client) {
+        getSession().delete(client);
+    }
+
+    public Client selectClient(String clientName) {
+        Client selectedClient = null;
+        for (Client client : getClients()) {
+            if (client.getName().equals(clientName)) {
+                selectedClient = client;
+                break;
+            }
+        }
+        return selectedClient;
+    }
 }

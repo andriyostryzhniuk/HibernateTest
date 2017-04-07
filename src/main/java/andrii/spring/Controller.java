@@ -27,19 +27,9 @@ public class Controller {
     }
 
     @GetMapping("/chooseClient")
-    public String chooseClient(ModelMap modelMap, String clientName) {
+    public String chooseClient(ModelMap modelMap, String clientName, String operation) {
 
-        modelMap.put("clientName", clientName);
-
-        Client clientToUpdating = null;
-        for (Client client : clientDao.getClients()) {
-            if (client.getName().equals(clientName)) {
-                clientToUpdating = client;
-                break;
-            }
-        }
-        modelMap.put("clientToUpdating", clientToUpdating);
-
+        modelMap.put("clientTo" + operation, clientDao.selectClient(clientName));
         return "forward:/main";
     }
 
@@ -55,6 +45,13 @@ public class Controller {
         client.setContactPerson(contactPerson);
 
         clientDao.update(client);
+        return "forward:/main";
+    }
+
+    @GetMapping("/deleteClient")
+    public String deleteClient (@SessionAttribute Client client) {
+
+        clientDao.delete(client);
         return "forward:/main";
     }
 }
