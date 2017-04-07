@@ -21,10 +21,8 @@ public class EncodingFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        System.out.println("requestEncoding: " + filterConfig.getInitParameter("requestEncoding"));
-
-        request.setCharacterEncoding(filterConfig.getInitParameter("requestEncoding"));
-        response.setCharacterEncoding(filterConfig.getInitParameter("requestEncoding"));
+        request.setCharacterEncoding(filterConfig.getInitParameter("characterEncoding"));
+        response.setCharacterEncoding(filterConfig.getInitParameter("characterEncoding"));
 
         chain.doFilter(request, response);
     }

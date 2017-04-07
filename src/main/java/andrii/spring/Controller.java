@@ -23,7 +23,7 @@ public class Controller {
     public String addClient(@ModelAttribute Client client) {
 
         clientDao.save(client);
-        return "forward:/main";
+        return "redirect:/main";
     }
 
     @GetMapping("/chooseClient")
@@ -45,13 +45,13 @@ public class Controller {
         client.setContactPerson(contactPerson);
 
         clientDao.update(client);
-        return "forward:/main";
+        return "redirect:/main";
     }
 
     @GetMapping("/deleteClient")
     public String deleteClient (@SessionAttribute Client client) {
 
         clientDao.delete(client);
-        return "forward:/main";
+        return "redirect:/main";
     }
 }

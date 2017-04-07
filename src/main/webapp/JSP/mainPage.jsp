@@ -43,7 +43,7 @@
     </form>
 
 
-    <br><br>Update client:<br>
+    <br>Update client:<br>
     <form action="/chooseClient" method="get">
         Input client's name: <input type="text" name="clientName" value="${clientToUpdating.name}">
         <input type="submit" name="operation" value="Updating">
@@ -55,7 +55,7 @@
     </c:if>
 
 
-    <br><br>Delete client:<br>
+    <br>Delete client:<br>
     <form action="/chooseClient" method="get">
         Input client's name: <input type="text" name="clientName" value="${clientToDeleting.name}">
         <input type="submit" name="operation" value="Deleting">
