@@ -21,8 +21,8 @@ public class EncodingFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
-        request.setCharacterEncoding(filterConfig.getInitParameter("characterEncoding"));
-        response.setCharacterEncoding(filterConfig.getInitParameter("characterEncoding"));
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
 
         chain.doFilter(request, response);
     }

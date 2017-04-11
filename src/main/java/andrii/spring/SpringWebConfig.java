@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"andrii.logic", "andrii.spring"})
+@ComponentScan({"andrii"})
 public class SpringWebConfig extends WebMvcConfigurerAdapter {
 
     @Bean

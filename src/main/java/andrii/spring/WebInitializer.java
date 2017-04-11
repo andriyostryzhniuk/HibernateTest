@@ -2,8 +2,9 @@ package andrii.spring;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
+import javax.servlet.Filter;
 
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
@@ -19,4 +20,10 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected String[] getServletMappings() {
         return new String[] {"/"};
     }
+
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[]{new EncodingFilter()};
+    }
+
 }

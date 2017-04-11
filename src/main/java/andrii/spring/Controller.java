@@ -1,7 +1,8 @@
 package andrii.spring;
 
 import andrii.data.model.Client;
-import andrii.logic.ClientDao;
+import andrii.dao.ClientDao;
+import andrii.service.ClientsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +13,15 @@ public class Controller {
     @Autowired
     ClientDao clientDao;
 
+    @Autowired
+    private ClientsService clientsService;
+
     @RequestMapping(value = "/main")
     public String printMainPage(ModelMap modelMap) {
 
-//        clientDao.getClients().get(0).getOrderings().forEach(ordering -> System.out.println(ordering.getCost()));
+       clientsService.doSomething();
 
-        modelMap.put("clientList", clientDao.getClients());
+        modelMap.put("clientList", clientDao.getObjects());
         return "mainPage";
     }
 
