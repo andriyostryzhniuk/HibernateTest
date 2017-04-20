@@ -22,12 +22,12 @@
             <th>Telephone Number</th>
             <th>Contact person</th>
         </tr>
-        <c:forEach var="client" items="${clientList}">
+        <c:forEach var="order" items="${clientList}">
             <tr>
-                <td>${client.name}</td>
-                <td>${client.address}</td>
-                <td>${client.telephoneNumber}</td>
-                <td>${client.contactPerson}</td>
+                <td>${order.name}</td>
+                <td>${order.address}</td>
+                <td>${order.telephoneNumber}</td>
+                <td>${order.contactPerson}</td>
             </tr>
         </c:forEach>
     </table>
@@ -46,7 +46,8 @@
     <br>Update client:<br>
     <form action="/chooseClient" method="get">
         Input client's name: <input type="text" name="clientName" value="${clientToUpdating.name}">
-        <input type="submit" name="operation" value="Updating">
+        <input type="hidden" name="operation" value="Updating">
+        <input type="submit" value="Updating">
     </form>
     <c:if test="${clientToUpdating != null}">
         <c:import url="updateClient.jsp" >
@@ -58,13 +59,27 @@
     <br>Delete client:<br>
     <form action="/chooseClient" method="get">
         Input client's name: <input type="text" name="clientName" value="${clientToDeleting.name}">
-        <input type="submit" name="operation" value="Deleting">
+        <input type="hidden" name="operation" value="Deleting">
+        <input type="submit" value="Deleting">
     </form>
     <c:if test="${clientToDeleting != null}">
         <c:import url="deleteClient.jsp" >
             <c:param name="clientToDeleting" value="${clientToDeleting}" />
         </c:import>
     </c:if>
+
+    <br>Show client's orders:<br>
+    <form action="/showOrders" method="get">
+        Input client's name: <input type="text" name="clientName" value="${clientToShow_orders.name}">
+        <input type="hidden" name="operation" value="Show_orders">
+        <input type="submit" value="Show orders">
+    </form>
+    <c:if test="${clientToShow_orders != null}">
+        <c:import url="orders.jsp" >
+            <c:param name="orders" value="${orders}" />
+        </c:import>
+    </c:if>
+
 
 </body>
 </html>

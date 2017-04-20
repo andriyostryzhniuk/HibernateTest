@@ -19,8 +19,6 @@ public class Controller {
     @RequestMapping(value = "/main")
     public String printMainPage(ModelMap modelMap) {
 
-       clientsService.doSomething();
-
         modelMap.put("clientList", clientDao.getObjects());
         return "mainPage";
     }
@@ -59,5 +57,14 @@ public class Controller {
 
         clientDao.delete(client);
         return "redirect:/main";
+    }
+
+    @GetMapping("/showOrders")
+    public String showOrders(ModelMap modelMap, String clientName, String operation) {
+
+        clientsService.getOrders(clientName, modelMap);
+        modelMap.put("clientTo" + operation, clientDao.selectClient(clientName));
+
+        return "forward:/main";
     }
 }

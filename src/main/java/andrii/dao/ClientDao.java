@@ -17,7 +17,7 @@ public class ClientDao extends AbstractDaoRealization<Client> {
     @Override
     public List<Client> getObjects() {
         return getSession()
-                .createCriteria(Client.class)
+                .createQuery("from Client ")
                 .list();
     }
 
