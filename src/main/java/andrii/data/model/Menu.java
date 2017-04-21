@@ -26,11 +26,8 @@ public class Menu implements Serializable {
     @Column
     private String ingredients;
 
-    @ManyToMany(mappedBy = "menu")
-    private List<Ordering> orderingList;
-
-    public Menu() {
-    }
+/*    @ManyToMany(mappedBy = "menuList")
+    private List<Ordering> orderingList;*/
 
     public Integer getId() {
         return id;
@@ -72,11 +69,11 @@ public class Menu implements Serializable {
         this.ingredients = ingredients;
     }
 
-    public List<Ordering> getOrderingList() {
+/*    public List<Ordering> getOrderingList() {
         return orderingList;
     }
 
     public void setOrderingList(List<Ordering> orderingList) {
         this.orderingList = orderingList;
-    }
+    }*/
 }

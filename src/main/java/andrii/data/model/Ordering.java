@@ -87,4 +87,12 @@ public class Ordering implements Serializable {
     public void setPaid(BigDecimal paid) {
         this.paid = paid;
     }
+
+    public List<Menu> getMenuList() {
+        return menuList;
+    }
+
+    public void setMenuList(List<Menu> menuList) {
+        this.menuList = menuList;
+    }
 }
