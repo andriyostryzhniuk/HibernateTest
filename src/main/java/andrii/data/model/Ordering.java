@@ -39,6 +39,9 @@ public class Ordering implements Serializable {
     )
     private List<Menu> menuList;
 
+    @OneToMany(mappedBy = "ordering", cascade = CascadeType.ALL)
+    private List<OrderingMenu> orderingMenuList;
+
     public Integer getId() {
         return id;
     }
@@ -93,5 +96,13 @@ public class Ordering implements Serializable {
 
     public void setMenuList(List<Menu> menuList) {
         this.menuList = menuList;
+    }
+
+    public List<OrderingMenu> getOrderingMenuList() {
+        return orderingMenuList;
+    }
+
+    public void setOrderingMenuList(List<OrderingMenu> orderingMenuList) {
+        this.orderingMenuList = orderingMenuList;
     }
 }

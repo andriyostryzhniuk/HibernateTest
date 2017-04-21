@@ -29,6 +29,9 @@ public class Menu implements Serializable {
     @JoinColumn(name = "dishesType_id", nullable = false)
     private DishesType type;
 
+    @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
+    private List<OrderingMenu> orderingMenuList;
+
 /*    @ManyToMany(mappedBy = "menuList")
     private List<Ordering> orderingList;*/
 
@@ -78,6 +81,14 @@ public class Menu implements Serializable {
 
     public void setType(DishesType type) {
         this.type = type;
+    }
+
+    public List<OrderingMenu> getOrderingMenuList() {
+        return orderingMenuList;
+    }
+
+    public void setOrderingMenuList(List<OrderingMenu> orderingMenuList) {
+        this.orderingMenuList = orderingMenuList;
     }
 
     /*    public List<Ordering> getOrderingList() {
