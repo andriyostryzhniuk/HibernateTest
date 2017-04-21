@@ -78,6 +78,7 @@
     <c:if test="${clientToShow_orders != null}">
         <c:import url="orders.jsp" >
             <c:param name="orders" value="${orders}" />
+            <c:param name="clientToShow_orders" value="${clientToShow_orders}" />
         </c:import>
     </c:if>
 

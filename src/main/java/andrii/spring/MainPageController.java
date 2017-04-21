@@ -8,13 +8,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 @org.springframework.stereotype.Controller
-public class Controller {
+public class MainPageController {
 
     @Autowired
     ClientDao clientDao;
-
-    @Autowired
-    private ClientsService clientsService;
 
     @RequestMapping(value = "/main")
     public String printMainPage(ModelMap modelMap) {
@@ -59,12 +56,4 @@ public class Controller {
         return "redirect:/main";
     }
 
-    @GetMapping("/showOrders")
-    public String showOrders(ModelMap modelMap, String clientName, String operation) {
-
-        clientsService.getOrders(clientName, modelMap);
-        modelMap.put("clientTo" + operation, clientDao.selectClient(clientName));
-
-        return "forward:/main";
-    }
 }

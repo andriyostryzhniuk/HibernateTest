@@ -31,4 +31,7 @@ public class ClientsService {
         }
     }
 
+    public ClientDao getClientDao() {
+        return clientDao;
+    }
 }
