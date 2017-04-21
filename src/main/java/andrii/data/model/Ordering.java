@@ -1,10 +1,11 @@
 package andrii.data.model;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -31,8 +32,13 @@ public class Ordering implements Serializable {
     @Column
     private BigDecimal paid;
 
-    public Ordering() {
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "ordering_menu",
+            joinColumns = @JoinColumn(name = "ordering_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_id")
+    )
+    private List<Menu> menuList;
 
     public Integer getId() {
         return id;

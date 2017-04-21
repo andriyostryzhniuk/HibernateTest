@@ -68,6 +68,7 @@
         </c:import>
     </c:if>
 
+
     <br>Show client's orders:<br>
     <form action="/showOrders" method="get">
         Input client's name: <input type="text" name="clientName" value="${clientToShow_orders.name}">
