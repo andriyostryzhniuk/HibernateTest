@@ -11,7 +11,6 @@ import java.util.List;
 public class Client implements Serializable {
 
     @Id
-    @Column
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer id;
 

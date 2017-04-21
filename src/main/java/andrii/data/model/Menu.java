@@ -10,7 +10,6 @@ import java.util.List;
 public class Menu implements Serializable {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
@@ -25,6 +24,10 @@ public class Menu implements Serializable {
 
     @Column
     private String ingredients;
+
+    @ManyToOne
+    @JoinColumn(name = "dishesType_id", nullable = false)
+    private DishesType type;
 
 /*    @ManyToMany(mappedBy = "menuList")
     private List<Ordering> orderingList;*/
@@ -69,7 +72,15 @@ public class Menu implements Serializable {
         this.ingredients = ingredients;
     }
 
-/*    public List<Ordering> getOrderingList() {
+    public DishesType getType() {
+        return type;
+    }
+
+    public void setType(DishesType type) {
+        this.type = type;
+    }
+
+    /*    public List<Ordering> getOrderingList() {
         return orderingList;
     }
 

@@ -12,7 +12,6 @@ import java.util.List;
 public class Ordering implements Serializable {
 
     @Id
-    @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
