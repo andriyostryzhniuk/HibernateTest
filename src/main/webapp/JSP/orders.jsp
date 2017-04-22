@@ -24,7 +24,13 @@
 
 <br>
 Show order menu:
-<form action="/showMenu" >
+<form action="/showMenu" method="post" >
     <input type="date" name="date">
     <input type="submit" value="Show menu">
 </form>
+
+<c:if test="${menu != null}">
+    <c:import url="menu.jsp" >
+        <c:param name="menu" value="${menu}" />
+    </c:import>
+</c:if>

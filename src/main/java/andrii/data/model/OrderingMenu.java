@@ -22,6 +22,9 @@ public class OrderingMenu implements Serializable {
     @Column
     private String servings;
 
+    public OrderingMenu() {
+    }
+
     public Integer getId() {
         return id;
     }

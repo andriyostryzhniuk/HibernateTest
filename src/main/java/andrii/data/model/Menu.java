@@ -32,7 +32,10 @@ public class Menu implements Serializable {
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
     private List<OrderingMenu> orderingMenuList;
 
-/*    @ManyToMany(mappedBy = "menuList")
+    public Menu() {
+    }
+
+    /*    @ManyToMany(mappedBy = "menuList")
     private List<Ordering> orderingList;*/
 
     public Integer getId() {

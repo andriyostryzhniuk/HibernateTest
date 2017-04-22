@@ -17,6 +17,9 @@ public class DishesType {
     @OneToMany(mappedBy = "type", cascade = CascadeType.ALL)
     private List<Menu> menuList;
 
+    public DishesType() {
+    }
+
     public Integer getId() {
         return id;
     }

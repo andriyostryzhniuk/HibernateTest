@@ -42,6 +42,9 @@ public class Ordering implements Serializable {
     @OneToMany(mappedBy = "ordering", cascade = CascadeType.ALL)
     private List<OrderingMenu> orderingMenuList;
 
+    public Ordering() {
+    }
+
     public Integer getId() {
         return id;
     }

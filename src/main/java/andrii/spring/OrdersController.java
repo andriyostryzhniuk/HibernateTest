@@ -14,20 +14,24 @@ public class OrdersController {
     @Autowired
     private ClientsService clientsService;
 
-    @GetMapping("/showOrders")
-    public String showOrders(ModelMap modelMap, String clientName, String operation) {
+    @PostMapping("/showOrders")
+    public String showOrders(ModelMap modelMap, String clientName) {
 
         clientsService.getOrders(clientName, modelMap);
-        modelMap.put("clientTo" + operation, clientsService.getClientDao().selectClient(clientName));
+        modelMap.put("clientToShow_orders", clientsService.getClientDao().selectClient(clientName));
 
         return "forward:/main";
     }
 
-    @GetMapping("/showMenu")
-    public String showMenu(@SessionAttribute Client client, String date) {
+    @PostMapping("/showMenu")
+    public String showMenu(@SessionAttribute Client client, String date, ModelMap modelMap) {
 
         LocalDate localDate = LocalDate.parse(date);
-        System.out.println("date: " + localDate + " :: client: " + client.getName());
+        modelMap.put("menu", "borsch");
+
+
+        clientsService.getOrders(client.getName(), modelMap);
+        modelMap.put("clientToShow_orders", client);
 
         return "forward:/main";
     }

@@ -70,15 +70,15 @@
 
 
     <br>Show client's orders:<br>
-    <form action="/showOrders" method="get">
+    <form action="/showOrders" method="post">
         Input client's name: <input type="text" name="clientName" value="${clientToShow_orders.name}">
-        <input type="hidden" name="operation" value="Show_orders">
         <input type="submit" value="Show orders">
     </form>
     <c:if test="${clientToShow_orders != null}">
         <c:import url="orders.jsp" >
             <c:param name="orders" value="${orders}" />
             <c:param name="clientToShow_orders" value="${clientToShow_orders}" />
+            <c:param name="menu" value="${menu}" />
         </c:import>
     </c:if>
 
