@@ -25,7 +25,7 @@
 <br>
 Show order menu:
 <form action="/showMenu" method="post" >
-    <input type="date" name="date">
+    <input type="date" name="date" value="${date}">
     <input type="submit" value="Show menu">
 </form>
 
