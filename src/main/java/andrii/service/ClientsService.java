@@ -3,24 +3,19 @@ package andrii.service;
 import andrii.data.model.Client;
 import andrii.dao.ClientDao;
 import andrii.data.model.Ordering;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
-
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ClientsService {
-
-    @Autowired
-    private ClientDao clientDao;
+public class ClientsService extends ClientDao {
 
     @Transactional
     public void getOrders (String clientName, ModelMap modelMap) {
 
-        Client client = clientDao.selectClient(clientName);
+        Client client = selectClient(clientName);
 
         if (client != null) {
             List<Ordering> orders = new ArrayList<>();
@@ -31,7 +26,4 @@ public class ClientsService {
         }
     }
 
-    public ClientDao getClientDao() {
-        return clientDao;
-    }
 }
