@@ -28,12 +28,12 @@
             <th>Telephone Number</th>
             <th>Contact person</th>
         </tr>
-        <c:forEach var="order" items="${clientList}">
+        <c:forEach var="client" items="${clientList}">
             <tr>
-                <td>${order.name}</td>
-                <td>${order.address}</td>
-                <td>${order.telephoneNumber}</td>
-                <td>${order.contactPerson}</td>
+                <td>${client.name}</td>
+                <td>${client.address}</td>
+                <td>${client.telephoneNumber}</td>
+                <td>${client.contactPerson}</td>
             </tr>
         </c:forEach>
     </table>

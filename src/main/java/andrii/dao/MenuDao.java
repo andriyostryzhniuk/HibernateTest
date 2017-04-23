@@ -37,7 +37,7 @@ public class MenuDao extends AbstractDaoRealization<Menu> {
                     "mass = :mass, " +
                     "ingredients = :ingredients " +
                 "where id = :id");
-        query.setParameter("type", menu.getType().getId());
+        query.setParameter("type", menu.getType());
         query.setParameter("name", menu.getName());
         query.setParameter("price", menu.getPrice());
         query.setParameter("mass", menu.getMass());
@@ -74,7 +74,32 @@ public class MenuDao extends AbstractDaoRealization<Menu> {
         return menuList;
     }
 
-    public List<DishesType> getDishesType(){
-        return getSession().createQuery("from DishesType").list();
+    public List<DishesType> getDishesTypeList(){
+
+        List<DishesType> dishesTypes = getSession()
+                .createQuery("from DishesType order by type")
+                .list();
+
+        return dishesTypes;
+    }
+
+    public DishesType getDishesType(Integer id){
+
+        return (DishesType) getSession()
+                .createQuery("from DishesType " +
+                        "where id = :id")
+                .setParameter("id", id)
+                .list()
+                .get(0);
+
+    }
+
+    public Menu getDish(String name) {
+
+        Query query = getSession().createQuery("from Menu " +
+                "where name = :name");
+        query.setParameter("name", name);
+
+        return (Menu) query.list().get(0);
     }
 }

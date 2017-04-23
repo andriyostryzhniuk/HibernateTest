@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <html>
@@ -23,7 +24,7 @@
             <th>Price</th>
             <th>Mass</th>
         </tr>
-        <c:forEach var="dish" items="${menu}">
+        <c:forEach var="dish" items="${menuList}">
             <tr>
                 <td>${dish.type.type}</td>
                 <td>${dish.name}</td>
@@ -34,44 +35,47 @@
 
     </table>
 
-    <%--<br><br>Create dish:<br>
-    <form action="/addDish" th:object="${client}" method="post">
-        Type: <select name="type">
+    <br><br>Create dish:<br>
+    <form action="/addDish" method="post">
+        Type: <select name="dishesTypeId">
+            <option value="Choose type">Choose type</option>
+
         <c:forEach var="dishesType" items="${dishesTypeList}">
-            <option value="${dishesType.id}" label="${dishesType.type}" />
+            <option value="${dishesType.id}"> ${dishesType.type} </option>
         </c:forEach>
-    </select>
+
+        </select>
         Name: <input type="text" name="name">
         Price: <input type="text" name="price">
         Mass: <input type="text" name="mass">
         <input type="submit" value="Create">
-    </form>--%>
+    </form>
 
 
-    <%--<br>Update dish:<br>
-    <form action="/chooseClient" method="get">
-        Input client's name: <input type="text" name="clientName" value="${clientToUpdating.name}">
+    <br>Update dish:<br>
+    <form action="/chooseDish" method="get">
+        Input dish: <input type="text" name="dishesName" value="${dishToUpdating.name}">
         <input type="hidden" name="operation" value="Updating">
         <input type="submit" value="Updating">
     </form>
-    <c:if test="${clientToUpdating != null}">
-        <c:import url="updateClient.jsp" >
-            <c:param name="clientToUpdating" value="${clientToUpdating}" />
+    <c:if test="${dishToUpdating != null}">
+        <c:import url="updateMenu.jsp" >
+            <c:param name="dishToUpdating" value="${dishToUpdating}" />
         </c:import>
     </c:if>
 
 
     <br>Delete dish:<br>
-    <form action="/chooseClient" method="get">
-        Input client's name: <input type="text" name="clientName" value="${clientToDeleting.name}">
+    <form action="/chooseDish" method="get">
+        Input dish: <input type="text" name="dishesName" value="${dishToDeleting.name}">
         <input type="hidden" name="operation" value="Deleting">
         <input type="submit" value="Deleting">
     </form>
-    <c:if test="${clientToDeleting != null}">
-        <c:import url="deleteClient.jsp" >
-            <c:param name="clientToDeleting" value="${clientToDeleting}" />
+    <c:if test="${dishToDeleting != null}">
+        <c:import url="deleteMenu.jsp" >
+            <c:param name="dishToDeleting" value="${dishToDeleting}" />
         </c:import>
-    </c:if>--%>
+    </c:if>
 
 </body>
 </html>

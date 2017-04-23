@@ -35,6 +35,13 @@ public class Menu implements Serializable {
     public Menu() {
     }
 
+    public Menu(String name, BigDecimal price, Double mass, DishesType type) {
+        this.name = name;
+        this.price = price;
+        this.mass = mass;
+        this.type = type;
+    }
+
     /*    @ManyToMany(mappedBy = "menuList")
     private List<Ordering> orderingList;*/
 

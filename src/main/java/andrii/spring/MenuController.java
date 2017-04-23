@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Controller
@@ -23,8 +24,8 @@ public class MenuController {
     @RequestMapping("/menuPage")
     public String printMenuPage(ModelMap modelMap){
 
-//        modelMap.put("dishesTypeList", menuService.getDishesType());
-        modelMap.put("menu", menuService.getObjects());
+        modelMap.put("menuList", menuService.getObjects());
+        modelMap.put("dishesTypeList", menuService.getDishesTypeList());
         return "menuPage";
     }
 
@@ -41,10 +42,42 @@ public class MenuController {
         return "forward:/main";
     }
 
-//    @PostMapping("/addDish")
-//    public String addDish(@ModelAttribute Menu menu) {
-//
-//        menuService.save(menu);
-//
-//    }
+    @PostMapping("/addDish")
+    public String addDish(Integer dishesTypeId, String name, String price, String mass) {
+
+        Menu menu = new Menu(name, new BigDecimal(price), new Double(mass), menuService.getDishesType(dishesTypeId));
+        menuService.save(menu);
+
+        return "redirect:/menuPage";
+    }
+
+    @GetMapping("/chooseDish")
+    public String chooseDish(ModelMap modelMap, String dishesName, String operation) {
+
+        modelMap.put("dishTo" + operation, menuService.getDish(dishesName));
+        return "forward:/menuPage";
+    }
+
+    @PostMapping("/updateMenu")
+    public String updateMenu (@SessionAttribute Menu menu,
+                                String name,
+                                String price,
+                                String mass,
+                                Integer dishesTypeId) {
+        menu.setName(name);
+        menu.setPrice(new BigDecimal(price));
+        menu.setMass(new Double(mass));
+        menu.setType(menuService.getDishesType(dishesTypeId));
+
+        menuService.update(menu);
+        return "redirect:/menuPage";
+    }
+
+    @GetMapping("/deleteDish")
+    public String deleteDish (@SessionAttribute Menu menu) {
+
+        menuService.delete(menu);
+        return "redirect:/menuPage";
+    }
+
 }
