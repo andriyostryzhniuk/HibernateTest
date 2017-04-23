@@ -1,6 +1,7 @@
 package andrii.dao;
 
 import andrii.data.model.Client;
+import andrii.data.model.DishesType;
 import andrii.data.model.Menu;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,10 @@ public class MenuDao extends AbstractDaoRealization<Menu> {
     @Override
     public List<Menu> getObjects() {
         return getSession()
-                .createQuery("from Menu ")
+                .createQuery("select menu " +
+                        "from Menu as menu, DishesType as dishesType " +
+                        "where menu.type.id = dishesType.id " +
+                        "order by dishesType.type")
                 .list();
     }
 
@@ -68,5 +72,9 @@ public class MenuDao extends AbstractDaoRealization<Menu> {
         List<Menu> menuList = query.list();
 
         return menuList;
+    }
+
+    public List<DishesType> getDishesType(){
+        return getSession().createQuery("from DishesType").list();
     }
 }
