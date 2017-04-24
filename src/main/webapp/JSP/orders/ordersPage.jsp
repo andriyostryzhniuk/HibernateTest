@@ -4,6 +4,13 @@
 <head>
     <title>Hibernate test Orders</title>
 </head>
+<style type="text/css">
+    th, td {
+        border: 1px solid dimgray;
+        padding-left: 3px;
+        padding-right: 5px;
+    }
+</style>
 <body>
 
     Orders: <br>

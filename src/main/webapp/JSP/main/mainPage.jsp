@@ -20,7 +20,6 @@
     <form action="/ordersPage">
         <input type="submit" value="Orders" />
     </form>
-    <br><br>
 
     Clients:
     <br>
