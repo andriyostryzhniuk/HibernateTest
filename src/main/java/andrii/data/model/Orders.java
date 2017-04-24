@@ -44,6 +44,14 @@ public class Orders implements Serializable {
     public Orders() {
     }
 
+    public Orders(LocalDate date, Client client, BigDecimal cost, BigDecimal discount, BigDecimal paid) {
+        this.date = date;
+        this.client = client;
+        this.cost = cost;
+        this.discount = discount;
+        this.paid = paid;
+    }
+
     public Integer getId() {
         return id;
     }

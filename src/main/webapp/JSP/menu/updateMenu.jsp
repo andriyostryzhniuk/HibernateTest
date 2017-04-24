@@ -6,22 +6,22 @@
 <form action="/updateMenu" method="post">
     Type: <select name="dishesTypeId">
 
-    <c:forEach var="dishesType" items="${dishesTypeList}">
+        <c:forEach var="dishesType" items="${dishesTypeList}">
 
-        <c:choose>
-            <c:when test="${dishesType.id == dishToUpdating.type.id}">
-                <option value="${dishesType.id}" selected> ${dishesType.type} </option>
-            </c:when>
-            <c:when test="${dishesType.id != dishToUpdating.type.id}">
-                <option value="${dishesType.id}" > ${dishesType.type} </option>
-            </c:when>
-        </c:choose>
+            <c:choose>
+                <c:when test="${dishesType.id == dishToUpdating.type.id}">
+                    <option value="${dishesType.id}" selected> ${dishesType.type} </option>
+                </c:when>
+                <c:when test="${dishesType.id != dishToUpdating.type.id}">
+                    <option value="${dishesType.id}" > ${dishesType.type} </option>
+                </c:when>
+            </c:choose>
 
-    </c:forEach>
+        </c:forEach>
 
     </select>
     Name: <input type="text" name="name" value="${dishToUpdating.name}">
-    Price: <input type="text" name="price" value="${dishToUpdating.price}">
-    Mass: <input type="text" name="mass" value="${dishToUpdating.mass}">
+    Price: <input type="text" name="price" value="${dishToUpdating.price}" style="width: 100px;" >
+    Mass: <input type="text" name="mass" value="${dishToUpdating.mass}" style="width: 100px;" >
     <input type="submit" value="Update">
 </form>

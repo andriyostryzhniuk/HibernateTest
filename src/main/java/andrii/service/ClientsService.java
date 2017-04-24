@@ -15,7 +15,7 @@ public class ClientsService extends ClientDao {
     @Transactional
     public void getOrders (String clientName, ModelMap modelMap) {
 
-        Client client = selectClient(clientName);
+        Client client = getClientByName(clientName);
 
         if (client != null) {
             List<Orders> orders = new ArrayList<>();

@@ -21,8 +21,7 @@
         <input type="submit" value="Orders" />
     </form>
 
-    Clients:
-    <br>
+    <b>Clients:</b><br>
     <table>
         <tr>
             <th>Name</th>
@@ -41,7 +40,7 @@
     </table>
 
 
-    <br><br>Create client:<br>
+    <br><br><b>Create client:</b><br>
     <form action="/addClient" th:object="${client}" method="post">
         Name: <input type="text" name="name">
         Address: <input type="text" name="address">
@@ -51,7 +50,7 @@
     </form>
 
 
-    <br>Update client:<br>
+    <br><b>Update client:</b><br>
     <form action="/chooseClient" method="get">
         Input client's name: <input type="text" name="clientName" value="${clientToUpdating.name}">
         <input type="hidden" name="operation" value="Updating">
@@ -64,7 +63,7 @@
     </c:if>
 
 
-    <br>Delete client:<br>
+    <br><b>Delete client:</b><br>
     <form action="/chooseClient" method="get">
         Input client's name: <input type="text" name="clientName" value="${clientToDeleting.name}">
         <input type="hidden" name="operation" value="Deleting">
@@ -77,7 +76,7 @@
     </c:if>
 
 
-    <br>Show client's orders:<br>
+    <br><b>Show client's orders:</b><br>
     <form action="/showOrders" method="post">
         Input client's name: <input type="text" name="clientName" value="${clientToShow_orders.name}">
         <input type="submit" value="Show orders">

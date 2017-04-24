@@ -34,7 +34,7 @@ public class MainPageController {
     @GetMapping("/chooseClient")
     public String chooseClient(ModelMap modelMap, String clientName, String operation) {
 
-        modelMap.put("clientTo" + operation, clientsService.selectClient(clientName));
+        modelMap.put("clientTo" + operation, clientsService.getClientByName(clientName));
         return "forward:/main";
     }
 
@@ -64,7 +64,7 @@ public class MainPageController {
     public String showOrders(ModelMap modelMap, String clientName) {
 
         clientsService.getOrders(clientName, modelMap);
-        modelMap.put("clientToShow_orders", clientsService.selectClient(clientName));
+        modelMap.put("clientToShow_orders", clientsService.getClientByName(clientName));
 
         return "forward:/main";
     }

@@ -23,7 +23,10 @@ public class MenuController {
     }
 
     @PostMapping("/addDish")
-    public String addDish(Integer dishesTypeId, String name, String price, String mass) {
+    public String addDish(Integer dishesTypeId,
+                          String name,
+                          String price,
+                          String mass) {
 
         Menu menu = new Menu(name, new BigDecimal(price), new Double(mass), menuService.getDishesType(dishesTypeId));
         menuService.save(menu);

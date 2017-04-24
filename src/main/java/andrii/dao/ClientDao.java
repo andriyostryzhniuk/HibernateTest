@@ -1,6 +1,7 @@
 package andrii.dao;
 
 import andrii.data.model.Client;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -16,8 +17,7 @@ public class ClientDao extends AbstractDaoRealization<Client> {
 
     @Override
     public List<Client> getObjects() {
-        return getSession()
-                .createQuery("from Client group by name")
+        return getSession().createQuery("from Client group by name")
                 .list();
     }
 
@@ -31,15 +31,20 @@ public class ClientDao extends AbstractDaoRealization<Client> {
         getSession().delete(client);
     }
 
-    public Client selectClient(String clientName) {
-        Client selectedClient = null;
-        for (Client client : getObjects()) {
-            if (client.getName().equals(clientName)) {
-                selectedClient = client;
-                break;
-            }
-        }
-        return selectedClient;
+    public Client getClientByName(String clientName) {
+
+        return (Client) getSession().createCriteria(Client.class)
+                .add(Restrictions.eq("name", clientName))
+                .list()
+                .get(0);
+    }
+
+    public Client getClientById(Integer clientId) {
+
+        return (Client) getSession().createCriteria(Client.class)
+                .add(Restrictions.eq("id", clientId))
+                .list()
+                .get(0);
     }
 
 }
