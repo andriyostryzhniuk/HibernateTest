@@ -59,12 +59,12 @@ public class MenuDao extends AbstractDaoRealization<Menu> {
 
         Query query = getSession().createQuery("select menu " +
                 "from Menu as menu, " +
-                    "OrderingMenu as orderingMenu, " +
-                    "Ordering as ordering " +
-                "where ordering.client.id = :client_id and " +
-                    "ordering.date = :date and " +
-                    "ordering.id = orderingMenu.ordering.id and " +
-                    "orderingMenu.menu.id = menu.id");
+                    "OrdersMenu as ordersMenu, " +
+                    "Orders as orders " +
+                "where orders.client.id = :client_id and " +
+                    "orders.date = :date and " +
+                    "orders.id = ordersMenu.orders.id and " +
+                    "ordersMenu.menu.id = menu.id");
 
         query.setParameter("client_id", client.getId());
         query.setParameter("date", date);

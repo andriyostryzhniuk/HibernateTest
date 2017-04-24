@@ -17,6 +17,9 @@
     <form action="/menuPage">
         <input type="submit" value="Menu" />
     </form>
+    <form action="/ordersPage">
+        <input type="submit" value="Orders" />
+    </form>
     <br><br>
 
     Clients:

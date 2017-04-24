@@ -16,7 +16,7 @@ public class MenuService extends MenuDao {
 
         List<Menu> menuList = getOrderMenu(client, date);
         menuList.forEach(item -> {
-            item.getOrderingMenuList().forEach(innerItem -> innerItem.getServings());
+            item.getOrdersMenuList().forEach(innerItem -> innerItem.getServings());
         });
 
         return menuList;

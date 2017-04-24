@@ -1,7 +1,6 @@
 package andrii.data.model;
 
 import javax.persistence.*;
-import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
@@ -27,7 +26,7 @@ public class Client implements Serializable {
     private String contactPerson;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Ordering> orderings;
+    private List<Orders> orderings;
 
     @Column
     private BigDecimal discount;
@@ -84,11 +83,11 @@ public class Client implements Serializable {
         this.contactPerson = contactPerson;
     }
 
-    public List<Ordering> getOrderings() {
+    public List<Orders> getOrderings() {
         return orderings;
     }
 
-    public void setOrderings(List<Ordering> orderings) {
+    public void setOrderings(List<Orders> orderings) {
         this.orderings = orderings;
     }
 

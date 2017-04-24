@@ -4,12 +4,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table
-public class Ordering implements Serializable {
+@Table(name = "ordering")
+public class Orders implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,10 +38,10 @@ public class Ordering implements Serializable {
     )
     private List<Menu> menuList;
 
-    @OneToMany(mappedBy = "ordering", cascade = CascadeType.ALL)
-    private List<OrderingMenu> orderingMenuList;
+    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+    private List<OrdersMenu> ordersMenuList;
 
-    public Ordering() {
+    public Orders() {
     }
 
     public Integer getId() {
@@ -101,11 +100,11 @@ public class Ordering implements Serializable {
         this.menuList = menuList;
     }
 
-    public List<OrderingMenu> getOrderingMenuList() {
-        return orderingMenuList;
+    public List<OrdersMenu> getOrdersMenuList() {
+        return ordersMenuList;
     }
 
-    public void setOrderingMenuList(List<OrderingMenu> orderingMenuList) {
-        this.orderingMenuList = orderingMenuList;
+    public void setOrdersMenuList(List<OrdersMenu> orderingMenuList) {
+        this.ordersMenuList = orderingMenuList;
     }
 }

@@ -30,7 +30,7 @@ public class Menu implements Serializable {
     private DishesType type;
 
     @OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
-    private List<OrderingMenu> orderingMenuList;
+    private List<OrdersMenu> ordersMenuList;
 
     public Menu() {
     }
@@ -43,7 +43,7 @@ public class Menu implements Serializable {
     }
 
     /*    @ManyToMany(mappedBy = "menuList")
-    private List<Ordering> orderingList;*/
+    private List<Orders> orderingList;*/
 
     public Integer getId() {
         return id;
@@ -93,19 +93,19 @@ public class Menu implements Serializable {
         this.type = type;
     }
 
-    public List<OrderingMenu> getOrderingMenuList() {
-        return orderingMenuList;
+    public List<OrdersMenu> getOrdersMenuList() {
+        return ordersMenuList;
     }
 
-    public void setOrderingMenuList(List<OrderingMenu> orderingMenuList) {
-        this.orderingMenuList = orderingMenuList;
+    public void setOrdersMenuList(List<OrdersMenu> orderingMenuList) {
+        this.ordersMenuList = orderingMenuList;
     }
 
-    /*    public List<Ordering> getOrderingList() {
+    /*    public List<Orders> getOrderingList() {
         return orderingList;
     }
 
-    public void setOrderingList(List<Ordering> orderingList) {
+    public void setOrderingList(List<Orders> orderingList) {
         this.orderingList = orderingList;
     }*/
 }

@@ -3,24 +3,16 @@
 
 <c:set var="menu" scope="session" value="${dishToUpdating}" />
 
-<%--<form action="/updateMenu" method="post" >
-    Name: <input type="text" name="name" value="${clientToUpdating.name}">
-    Address: <input type="text" name="address" value="${clientToUpdating.address}">
-    Telephone number: <input type="text" name="telephoneNumber" value="${clientToUpdating.telephoneNumber}">
-    Contact person: <input type="text" name="contactPerson" value="${clientToUpdating.contactPerson}">
-    <input type="submit" value="Update">
-</form>--%>
-
 <form action="/updateMenu" method="post">
     Type: <select name="dishesTypeId">
 
     <c:forEach var="dishesType" items="${dishesTypeList}">
 
         <c:choose>
-            <c:when test="${dishesType.id == dishToUpdating.id}">
+            <c:when test="${dishesType.id == dishToUpdating.type.id}">
                 <option value="${dishesType.id}" selected> ${dishesType.type} </option>
             </c:when>
-            <c:when test="${dishesType.id != dishToUpdating.id}">
+            <c:when test="${dishesType.id != dishToUpdating.type.id}">
                 <option value="${dishesType.id}" > ${dishesType.type} </option>
             </c:when>
         </c:choose>

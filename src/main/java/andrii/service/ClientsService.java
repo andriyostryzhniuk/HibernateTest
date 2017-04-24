@@ -2,7 +2,7 @@ package andrii.service;
 
 import andrii.data.model.Client;
 import andrii.dao.ClientDao;
-import andrii.data.model.Ordering;
+import andrii.data.model.Orders;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import javax.transaction.Transactional;
@@ -18,8 +18,8 @@ public class ClientsService extends ClientDao {
         Client client = selectClient(clientName);
 
         if (client != null) {
-            List<Ordering> orders = new ArrayList<>();
-            for (Ordering order : client.getOrderings()) {
+            List<Orders> orders = new ArrayList<>();
+            for (Orders order : client.getOrderings()) {
                 orders.add(order);
             }
             modelMap.put("orders", orders);

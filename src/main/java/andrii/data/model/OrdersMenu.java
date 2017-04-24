@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Table(name = "ordering_menu")
 @Entity
-public class OrderingMenu implements Serializable {
+public class OrdersMenu implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class OrderingMenu implements Serializable {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ordering_id")
-    private Ordering ordering;
+    private Orders orders;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "menu_id")
@@ -22,7 +22,7 @@ public class OrderingMenu implements Serializable {
     @Column
     private String servings;
 
-    public OrderingMenu() {
+    public OrdersMenu() {
     }
 
     public Integer getId() {
@@ -33,12 +33,12 @@ public class OrderingMenu implements Serializable {
         this.id = id;
     }
 
-    public Ordering getOrdering() {
-        return ordering;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setOrdering(Ordering ordering) {
-        this.ordering = ordering;
+    public void setOrders(Orders ordering) {
+        this.orders = ordering;
     }
 
     public Menu getMenu() {
