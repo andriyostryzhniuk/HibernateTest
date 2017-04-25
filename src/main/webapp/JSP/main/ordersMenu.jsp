@@ -15,7 +15,7 @@
             <td>${dish.name}</td>
             <td>${dish.price}</td>
             <td>${dish.mass}</td>
-            <td>${dish.orderingMenuList[0].servings}</td>
+            <td>${dish.ordersMenuList[0].servings}</td>
         </tr>
     </c:forEach>
 

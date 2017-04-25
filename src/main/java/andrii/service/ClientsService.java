@@ -19,7 +19,7 @@ public class ClientsService extends ClientDao {
 
         if (client != null) {
             List<Orders> orders = new ArrayList<>();
-            for (Orders order : client.getOrderings()) {
+            for (Orders order : client.getOrdersList()) {
                 orders.add(order);
             }
             modelMap.put("orders", orders);

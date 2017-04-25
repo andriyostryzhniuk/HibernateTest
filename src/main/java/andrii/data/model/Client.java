@@ -26,7 +26,7 @@ public class Client implements Serializable {
     private String contactPerson;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    private List<Orders> orderings;
+    private List<Orders> ordersList;
 
     @Column
     private BigDecimal discount;
@@ -83,12 +83,12 @@ public class Client implements Serializable {
         this.contactPerson = contactPerson;
     }
 
-    public List<Orders> getOrderings() {
-        return orderings;
+    public List<Orders> getOrdersList() {
+        return ordersList;
     }
 
-    public void setOrderings(List<Orders> orderings) {
-        this.orderings = orderings;
+    public void setOrdersList(List<Orders> orderings) {
+        this.ordersList = orderings;
     }
 
     public BigDecimal getDiscount() {
