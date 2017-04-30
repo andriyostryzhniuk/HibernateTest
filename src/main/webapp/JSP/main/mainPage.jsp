@@ -17,7 +17,16 @@
     <form >
         <button formaction="/menuPage" > Menu </button>
         <button formaction="/ordersPage" > Orders </button>
-        <button formaction="/admin" > Sign In </button>
+
+        <c:choose>
+            <c:when test="${pageContext.request.userPrincipal.name != null}">
+                <button formaction="/logout" > Logout </button>
+                <br>Welcome: ${pageContext.request.userPrincipal.name}
+            </c:when>
+            <c:otherwise>
+                <button formaction="/login" > Sign In </button>
+            </c:otherwise>
+        </c:choose>
     </form>
 
     <br><b>Clients:</b><br>

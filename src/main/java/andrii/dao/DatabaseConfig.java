@@ -18,6 +18,7 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class DatabaseConfig {
 
+    @Bean
     public static DataSource dataSource() {
         return createDataSource("127.0.0.1", "3306", "catering", "root", "qwerty");
     }

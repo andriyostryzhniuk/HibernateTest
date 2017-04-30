@@ -7,16 +7,28 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import javax.sql.DataSource;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder managerBuilder) throws Exception {
+    DataSource dataSource;
 
-        managerBuilder.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
-        managerBuilder.inMemoryAuthentication().withUser("user").password("user").roles("USER");
-        managerBuilder.inMemoryAuthentication().withUser("dba").password("dba").roles("DBA");
+    @Autowired
+    public void configAuthentication(AuthenticationManagerBuilder authentication) throws Exception {
+
+        /*authentication.inMemoryAuthentication().withUser("admin").password("admin").roles("ADMIN");
+        authentication.inMemoryAuthentication().withUser("user").password("user").roles("USER");
+        authentication.inMemoryAuthentication().withUser("dba").password("dba").roles("DBA");*/
+
+        authentication.jdbcAuthentication().dataSource(dataSource)
+                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT users.username, user_roles.role " +
+                        "FROM users, user_roles " +
+                        "WHERE users.username = ? AND " +
+                        "users.role_id = user_roles.id");
 
     }
 
@@ -24,9 +36,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         http.authorizeRequests()
-                .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-                .antMatchers("/dba/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_DBA')")
-                .and().formLogin();
+//                .antMatchers("/", "/main").permitAll()
+                .antMatchers("/admin/**").access("hasRole('admin')")
+//                .antMatchers("/dba/**").access("hasRole('ADMIN') or hasRole('DBA')")
+//                .antMatchers("/user/**").access("hasRole('USER')")
+                .and().formLogin().loginPage("/login")
+                .usernameParameter("username").passwordParameter("password")
+                .and().csrf();
+
 
     }
 }
