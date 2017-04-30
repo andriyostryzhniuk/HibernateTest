@@ -24,6 +24,8 @@ public class OrdersController {
     @RequestMapping("/ordersPage")
     public String ordersPage(ModelMap modelMap) {
 
+        ordersService.showOrdersByMenuProperties();
+
         modelMap.put("orders", ordersService.getObjects());
         modelMap.put("clientsList", clientsService.getObjects());
         return "orders/ordersPage";

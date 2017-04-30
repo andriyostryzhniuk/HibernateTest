@@ -2,7 +2,12 @@ package andrii.dao;
 
 import andrii.data.model.Client;
 import andrii.data.model.Orders;
+import andrii.data.model.OrdersMenu;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
@@ -45,4 +50,17 @@ public class OrdersDao extends AbstractDaoRealization<Orders> {
                 .list()
                 .get(0);
     }
+
+    protected List<Orders> getOrdersByMenuProperties() {
+
+        List<Orders> ordersList = getSession().createCriteria(Orders.class)
+                .createCriteria("ordersMenuList", "ordersMenu")
+                    .createCriteria("menu", "menu")
+                        .add(Restrictions.eq("name", "Варенники"))
+                .list();
+
+        return ordersList;
+
+    }
+
 }
