@@ -1,4 +1,4 @@
-package andrii.spring;
+package andrii.spring.controllers;
 
 import andrii.data.model.Client;
 import andrii.service.ClientsService;

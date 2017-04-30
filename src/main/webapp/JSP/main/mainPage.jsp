@@ -14,14 +14,13 @@
 </style>
 <body>
 
-    <form action="/menuPage">
-        <input type="submit" value="Menu" />
-    </form>
-    <form action="/ordersPage">
-        <input type="submit" value="Orders" />
+    <form >
+        <button formaction="/menuPage" > Menu </button>
+        <button formaction="/ordersPage" > Orders </button>
+        <button formaction="/admin" > Sign In </button>
     </form>
 
-    <b>Clients:</b><br>
+    <br><b>Clients:</b><br>
     <table>
         <tr>
             <th>Name</th>
