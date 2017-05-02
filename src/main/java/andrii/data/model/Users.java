@@ -27,11 +27,11 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(String username, String password, UserRole role, Byte enabled) {
+    public Users(String username, String password, UserRole role) {
         this.username = username;
         this.password = password;
         this.role = role;
-        this.enabled = enabled;
+        this.enabled = 1;
     }
 
     public Integer getId() {

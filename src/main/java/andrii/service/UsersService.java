@@ -23,8 +23,7 @@ public class UsersService extends UsersDao {
         Users user = new Users(
                 username,
                 hashedPassword,
-                usersRoleDao.getRole("ADMIN"),
-                new Byte("1"));
+                usersRoleDao.getRole("ADMIN"));
 
         super.save(user);
     }

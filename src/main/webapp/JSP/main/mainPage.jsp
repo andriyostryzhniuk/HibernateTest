@@ -21,6 +21,7 @@
         <c:choose>
             <c:when test="${pageContext.request.userPrincipal.name != null}">
                 <button formaction="/logout" > Logout </button>
+                <button formaction="/admin" > Admin </button>
                 <br>Welcome: ${pageContext.request.userPrincipal.name}
             </c:when>
             <c:otherwise>
