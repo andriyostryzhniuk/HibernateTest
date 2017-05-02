@@ -21,7 +21,17 @@ public class Users implements Serializable {
     @JoinColumn(name = "role_id", nullable = false)
     private UserRole role;
 
+    @Column
+    private Byte enabled;
+
     public Users() {
+    }
+
+    public Users(String username, String password, UserRole role, Byte enabled) {
+        this.username = username;
+        this.password = password;
+        this.role = role;
+        this.enabled = enabled;
     }
 
     public Integer getId() {
@@ -54,5 +64,13 @@ public class Users implements Serializable {
 
     public void setRole(UserRole role) {
         this.role = role;
+    }
+
+    public Byte getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Byte enabled) {
+        this.enabled = enabled;
     }
 }

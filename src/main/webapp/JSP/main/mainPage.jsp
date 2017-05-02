@@ -14,7 +14,7 @@
 </style>
 <body>
 
-    <form >
+    <form>
         <button formaction="/menuPage" > Menu </button>
         <button formaction="/ordersPage" > Orders </button>
 
@@ -25,6 +25,7 @@
             </c:when>
             <c:otherwise>
                 <button formaction="/login" > Sign In </button>
+                <button formaction="/registrationPage" > Registration </button>
             </c:otherwise>
         </c:choose>
     </form>

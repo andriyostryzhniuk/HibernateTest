@@ -17,11 +17,11 @@
         </c:if>
 
         <div style="margin-bottom:  10px">
-            <input type="text" id="username" name="username" placeholder="Enter Username" required>
+            <input type="text" name="username" placeholder="Enter Username" required>
         </div>
 
         <div style="margin-bottom:  10px">
-            <input type="password" id="password" name="password" placeholder="Enter Password" required>
+            <input type="password" name="password" placeholder="Enter Password" required>
         </div>
         <input type="hidden" name="${_csrf.parameterName}"   value="${_csrf.token}" />
 

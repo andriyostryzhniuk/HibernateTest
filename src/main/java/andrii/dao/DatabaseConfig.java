@@ -49,7 +49,7 @@ public class DatabaseConfig {
         return localSessionFactoryBean;
     }
 
-    Properties hibernateProperties() {
+    public Properties hibernateProperties() {
         return new Properties() {
             {
                 setProperty("hibernate.hbm2ddl.auto", "update");

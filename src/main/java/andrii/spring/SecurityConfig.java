@@ -1,15 +1,21 @@
 package andrii.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 
 @Configuration
+@Component
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -28,8 +34,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authoritiesByUsernameQuery("SELECT users.username, user_roles.role " +
                         "FROM users, user_roles " +
                         "WHERE users.username = ? AND " +
-                        "users.role_id = user_roles.id");
+                        "users.role_id = user_roles.id")
+                .passwordEncoder(passwordEncoder());
 
+    }
+
+    @Bean(name = "authenticationManager")
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
+    }
+
+
+    @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
     @Override
@@ -37,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
 //                .antMatchers("/", "/main").permitAll()
-                .antMatchers("/admin/**").access("hasRole('admin')")
+                .antMatchers("/admin/**").access("hasRole('ADMIN')")
 //                .antMatchers("/dba/**").access("hasRole('ADMIN') or hasRole('DBA')")
 //                .antMatchers("/user/**").access("hasRole('USER')")
                 .and().formLogin().loginPage("/login")
