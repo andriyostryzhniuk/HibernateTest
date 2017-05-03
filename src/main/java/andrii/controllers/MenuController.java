@@ -1,4 +1,4 @@
-package andrii.spring.controllers;
+package andrii.controllers;
 
 import andrii.data.model.Menu;
 import andrii.service.MenuService;

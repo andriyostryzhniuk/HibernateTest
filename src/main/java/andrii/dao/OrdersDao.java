@@ -5,10 +5,8 @@ import andrii.data.model.Orders;
 import andrii.data.model.OrdersMenu;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Property;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
+import org.hibernate.query.criteria.internal.CriteriaBuilderImpl;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
@@ -52,7 +50,6 @@ public class OrdersDao extends AbstractDaoRealization<Orders> {
     }
 
     protected List<Orders> getOrdersByMenuProperties() {
-
         List<Orders> ordersList = getSession().createCriteria(Orders.class)
                 .createCriteria("ordersMenuList", "ordersMenu")
                     .createCriteria("menu", "menu")

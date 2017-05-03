@@ -1,4 +1,4 @@
-package andrii.spring.controllers;
+package andrii.controllers;
 
 import andrii.data.model.Client;
 import andrii.data.model.Orders;
