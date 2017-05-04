@@ -12,13 +12,19 @@ public class UserRole implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true)
-    private String role;
+    @Column(nullable = false)
+    private String authority;
 
-    @OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-    private List<Users> usersList;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     public UserRole() {
+    }
+
+    public UserRole(User user, String authority) {
+        this.user = user;
+        this.authority = authority;
     }
 
     public Integer getId() {
@@ -29,19 +35,19 @@ public class UserRole implements Serializable {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getAuthority() {
+        return authority;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setAuthority(String role) {
+        this.authority = role;
     }
 
-    public List<Users> getUsersList() {
-        return usersList;
+    public User getUser() {
+        return user;
     }
 
-    public void setUsersList(List<Users> usersList) {
-        this.usersList = usersList;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

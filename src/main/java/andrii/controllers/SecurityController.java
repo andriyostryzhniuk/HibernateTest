@@ -1,6 +1,6 @@
 package andrii.controllers;
 
-import andrii.service.UsersService;
+import andrii.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SecurityController {
 
     @Autowired
-    private UsersService usersService;
+    private UserService userService;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -60,7 +60,7 @@ public class SecurityController {
     @PostMapping("/register")
     public String register(String username, String password) {
 
-        usersService.save(username, password);
+        userService.save(username, password);
 
         return "forward:/autoLogin";
     }

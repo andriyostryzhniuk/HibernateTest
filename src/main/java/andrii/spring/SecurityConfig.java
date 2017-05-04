@@ -23,11 +23,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configAuthentication(AuthenticationManagerBuilder authentication) throws Exception {
 
         authentication.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("SELECT username, password, enabled FROM users WHERE username = ?")
-                .authoritiesByUsernameQuery("SELECT users.username, user_roles.role as authority " +
-                        "FROM users, user_roles " +
-                        "WHERE users.username = ? AND " +
-                        "users.role_id = user_roles.id")
+                .usersByUsernameQuery("SELECT username, password, enabled FROM user WHERE username = ?")
+                .authoritiesByUsernameQuery("SELECT user.username, user_roles.authority " +
+                        "FROM user, user_roles " +
+                        "WHERE user.username = ? AND " +
+                        "user.id = user_roles.user_id")
                 .passwordEncoder(passwordEncoder());
     }
 
@@ -48,13 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/", "/main").permitAll()
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "USER", "MODERATOR")
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .and()
                 .formLogin().loginPage("/login")
                 .usernameParameter("username").passwordParameter("password");
-//                .and()
-//                .csrf();
-
-
     }
 }

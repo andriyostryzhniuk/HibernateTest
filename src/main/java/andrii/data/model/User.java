@@ -2,10 +2,11 @@ package andrii.data.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
-@Table(name = "users")
-public class Users implements Serializable {
+@Table
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,23 +15,21 @@ public class Users implements Serializable {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private UserRole role;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserRole> userRoleList;
 
     @Column
     private Byte enabled;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(String username, String password, UserRole role) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.role = role;
         this.enabled = 1;
     }
 
@@ -58,12 +57,12 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public UserRole getRole() {
-        return role;
+    public List<UserRole> getUserRoleList() {
+        return userRoleList;
     }
 
-    public void setRole(UserRole role) {
-        this.role = role;
+    public void setUserRoleList(List<UserRole> userRoleList) {
+        this.userRoleList = userRoleList;
     }
 
     public Byte getEnabled() {
