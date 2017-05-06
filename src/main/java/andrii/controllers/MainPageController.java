@@ -17,7 +17,7 @@ public class MainPageController {
     @Autowired
     private MenuService menuService;
 
-    @RequestMapping({"/", "/main"})
+    @RequestMapping({"/", "/main", "/admin", "user", "/moderator"})
     public String printMainPage(ModelMap modelMap) {
 
         modelMap.put("clientList", clientsService.getObjects());

@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="th" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -21,7 +22,10 @@
         <c:choose>
             <c:when test="${pageContext.request.userPrincipal.name != null}">
                 <button formaction="/logout" > Logout </button>
-                <button formaction="/admin" > Admin </button>
+                <%--<sec:authorize access="hasAuthority('ADMIN')">--%>
+                <sec:authorize url="/admin">
+                    <button formaction="/admin" > Admin </button>
+                </sec:authorize>
                 <br>Welcome: ${pageContext.request.userPrincipal.name}
             </c:when>
             <c:otherwise>

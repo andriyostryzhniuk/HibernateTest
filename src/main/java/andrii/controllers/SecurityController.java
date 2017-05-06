@@ -25,12 +25,12 @@ public class SecurityController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @RequestMapping("/admin")
+/*    @RequestMapping("/admin")
     public String adminPage() {
 
         System.out.println("ADMIN");
         return "redirect:/main";
-    }
+    }*/
 
     @RequestMapping("/login")
     public String loginPage() {

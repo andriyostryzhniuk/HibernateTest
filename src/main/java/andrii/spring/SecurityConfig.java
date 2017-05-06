@@ -20,6 +20,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     @Autowired
+    private SuccessHandler successHandler;
+
+    @Autowired
     public void configAuthentication(AuthenticationManagerBuilder authentication) throws Exception {
 
         authentication.jdbcAuthentication().dataSource(dataSource)
@@ -49,7 +52,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/main").permitAll()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
                 .and()
-                .formLogin().loginPage("/login")
+                .formLogin().loginPage("/login").successHandler(successHandler)
                 .usernameParameter("username").passwordParameter("password");
     }
 }
