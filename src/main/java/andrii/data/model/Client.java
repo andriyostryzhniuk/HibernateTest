@@ -1,5 +1,6 @@
 package andrii.data.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -26,6 +27,7 @@ public class Client implements Serializable {
     private String contactPerson;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Orders> ordersList;
 
     @Column

@@ -26,14 +26,17 @@
                 <sec:authorize url="/admin">
                     <button formaction="/admin" > Admin </button>
                 </sec:authorize>
-                <br>Welcome: ${pageContext.request.userPrincipal.name}
             </c:when>
             <c:otherwise>
                 <button formaction="/login" > Sign In </button>
                 <button formaction="/registrationPage" > Registration </button>
             </c:otherwise>
         </c:choose>
+
+        <button formaction="/bootsrapPage" > Bootsrap Page </button>
     </form>
+
+    Welcome: <c:out value="${pageContext.request.userPrincipal.name}" default="guest" />
 
     <br><b>Clients:</b><br>
     <table>

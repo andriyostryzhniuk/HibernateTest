@@ -21,7 +21,7 @@ public class MainPageController {
     public String printMainPage(ModelMap modelMap) {
 
         modelMap.put("clientList", clientsService.getObjects());
-        clientsService.parseJSON();
+//        clientsService.parseJSON();
 
         return "main/mainPage";
     }
@@ -82,6 +82,11 @@ public class MainPageController {
         modelMap.put("clientToShow_orders", client);
 
         return "forward:/main";
+    }
+
+    @GetMapping("/bootsrapPage")
+    public String bootsrapPage(){
+        return "main/bootstapTestPage";
     }
 
 }

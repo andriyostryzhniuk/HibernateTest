@@ -7,6 +7,7 @@ import andrii.json.JSONTest;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import javax.transaction.Transactional;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,10 @@ public class ClientsService extends ClientDao {
 
     @Transactional
     public void parseJSON() {
-        JSONTest<Client> jsonTest = new JSONTest();
-        jsonTest.parseToJSON(getObjects().get(1));
+        JSONTest.parseToJSON(getObjects().get(1));
+
+        Client client = JSONTest.parseToJava(new File("D:\\user.json"), Client.class);
+        System.out.println(client.getName());
     }
 
 }
