@@ -5,14 +5,12 @@
 <html>
 <head>
     <title>Hibernate Test</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/resources/jquery-3.2.1.min.js"></script>
+    <script src="/resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-<style type="text/css">
-    th, td {
-        border: 1px solid dimgray;
-        padding-left: 3px;
-        padding-right: 5px;
-    }
-</style>
 <body>
 
     <form>
@@ -39,22 +37,28 @@
     Welcome: <c:out value="${pageContext.request.userPrincipal.name}" default="guest" />
 
     <br><b>Clients:</b><br>
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Telephone Number</th>
-            <th>Contact person</th>
-        </tr>
-        <c:forEach var="client" items="${clientList}">
-            <tr>
-                <td>${client.name}</td>
-                <td>${client.address}</td>
-                <td>${client.telephoneNumber}</td>
-                <td>${client.contactPerson}</td>
-            </tr>
-        </c:forEach>
-    </table>
+    <div class="table-responsive">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Address</th>
+                    <th>Telephone Number</th>
+                    <th>Contact person</th>
+                </tr>
+            </thead>
+            <tbody>
+                <c:forEach var="client" items="${clientList}">
+                    <tr>
+                        <td>${client.name}</td>
+                        <td>${client.address}</td>
+                        <td>${client.telephoneNumber}</td>
+                        <td>${client.contactPerson}</td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+    </div>
 
 
     <br><br><b>Create client:</b><br>

@@ -1,5 +1,10 @@
 package andrii.data.model;
 
+import andrii.json.LocalDateDeserializer;
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.map.annotate.JsonDeserialize;
+import org.codehaus.jackson.map.ext.JodaDeserializers;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -14,9 +19,11 @@ public class Orders implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     @Column(nullable = false)
     private LocalDate date;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
     private Client client;
@@ -30,6 +37,7 @@ public class Orders implements Serializable {
     @Column
     private BigDecimal paid;
 
+    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ordering_menu",
@@ -38,6 +46,7 @@ public class Orders implements Serializable {
     )
     private List<Menu> menuList;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
     private List<OrdersMenu> ordersMenuList;
 

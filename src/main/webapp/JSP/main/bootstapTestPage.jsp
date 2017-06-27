@@ -23,9 +23,10 @@
     <div class="container-fluid">
         <p>Resize the browser window to see the effect.</p>
         <div class="row">
-            <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
-            <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
-            <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+            <div class="col-xs-3" style="background-color:lavender;">.col-xs-3</div>
+            <div class="col-sm-3" style="background-color:lavenderblush;">.col-sm-3</div>
+            <div class="col-md-3" style="background-color:lavender;">.col-md-3</div>
+            <div class="col-lg-3" style="background-color:lavenderblush;">.col-lg-3</div>
         </div>
     </div>
 

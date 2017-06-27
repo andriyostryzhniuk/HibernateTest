@@ -14,12 +14,9 @@ public class JSONTest {
     public static  <T> void parseToJSON(T object){
         try {
 
-            mapper.writeValue(new File("D:\\user.json"), object);
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File("D:\\user.json"), object);
 
-            String jsonInString = mapper.writeValueAsString(object);
-            System.out.println(jsonInString);
-
-            jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
+            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(object);
             System.out.println(jsonInString);
 
         } catch (JsonGenerationException e) {
@@ -45,4 +42,7 @@ public class JSONTest {
         return object;
     }
 
+    protected static ObjectMapper getMapper() {
+        return mapper;
+    }
 }

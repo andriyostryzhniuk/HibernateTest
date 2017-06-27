@@ -1,7 +1,9 @@
 package andrii.dao;
 
 import andrii.data.model.Client;
+import andrii.data.model.Orders;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -45,6 +47,19 @@ public class ClientDao extends AbstractDaoRealization<Client> {
                 .add(Restrictions.eq("id", clientId))
                 .list()
                 .get(0);
+    }
+
+    public List<Orders> getAllClientOrders(Client client){
+
+        Query query = getSession().createQuery("select orders " +
+                "from Orders as orders, Client as client " +
+                "where orders.client.id = client.id and " +
+                "client.id = :clientId");
+
+        query.setParameter("clientId", client.getId());
+
+        return query.list();
+
     }
 
 }

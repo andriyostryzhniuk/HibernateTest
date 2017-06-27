@@ -27,7 +27,7 @@ public class Client implements Serializable {
     private String contactPerson;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-    @JsonIgnore
+//    @JsonIgnore
     private List<Orders> ordersList;
 
     @Column

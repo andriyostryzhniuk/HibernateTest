@@ -3,43 +3,45 @@
 <html>
 <head>
     <title>Hibernate test Orders</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/resources/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="/resources/jquery-3.2.1.min.js"></script>
+    <script src="/resources/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </head>
-<style type="text/css">
-    th, td {
-        border: 1px solid dimgray;
-        padding-left: 3px;
-        padding-right: 5px;
-    }
-</style>
 <body>
 
-    <div style="width: 100%;">
-        <div style="float:left; width: 40%">
+    <div class="container-fluid">
+        <div class="col-md-5">
 
             <b>Orders:</b><br>
-            <table>
-                <tr>
-                    <th>Date</th>
-                    <th>Client</th>
-                    <th>Cost</th>
-                    <th>Discount</th>
-                    <th>Paid</th>
-                </tr>
-                <c:forEach var="order" items="${orders}">
-                    <tr>
-                        <td>${order.date}</td>
-                        <td>${order.client.name}</td>
-                        <td>${order.cost}</td>
-                        <td>${order.discount}</td>
-                        <td>${order.paid}</td>
-                    </tr>
-                </c:forEach>
-
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Client</th>
+                            <th>Cost</th>
+                            <th>Discount</th>
+                            <th>Paid</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="order" items="${orders}">
+                            <tr>
+                                <td>${order.date}</td>
+                                <td>${order.client.name}</td>
+                                <td>${order.cost}</td>
+                                <td>${order.discount}</td>
+                                <td>${order.paid}</td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
             </table>
-
         </div>
+    </div>
 
-        <div style="float:left;">
+        <div class="col-md-7">
 
             <br><br><b>Create order:</b><br>
             <form action="/addOrder" method="post">
