@@ -1,13 +1,14 @@
 package andrii.data.model;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
 @Table
+@XmlRootElement
 public class Client implements Serializable {
 
     @Id

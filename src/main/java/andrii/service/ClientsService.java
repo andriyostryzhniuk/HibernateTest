@@ -6,6 +6,7 @@ import andrii.dao.ClientDao;
 import andrii.data.model.Orders;
 import andrii.json.JSONTest;
 import andrii.json.JsonClientParser;
+import andrii.xml.XmlClientParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -36,16 +37,18 @@ public class ClientsService extends ClientDao {
     @Transactional
     public void parseJSON() {
 
-        Client client = getObjects().get(1);
-        List<Orders> ordersList = getAllClientOrders(client);
-        client.setOrdersList(ordersList);
+        JSONTest.parseToJSON(getObjects().get(1));
 
-        JSONTest.parseToJSON(client);
+//        Client clientFromJson = JsonClientParser.readObject(new File("D:\\user.json"));
+        Client clientFromJson = JSONTest.parseToJava(new File("D:\\user.json"), Client.class);
+    }
 
-        Client clientFromJson = JsonClientParser.readObject(new File("D:\\user.json"));
-        System.out.println(clientFromJson.getName());
+    public void parseXML() {
 
-        JSONTest.parseToJSON(clientFromJson);
+        XmlClientParser.writeXml(getObjects().get(1), new File("D:\\user.xml"));
+
+        Client client = XmlClientParser.readXml(new File("D:\\user.xml"));
+//        XmlClientParser.writeXml(getObjects().get(1), new File("D:\\user2.xml"));
     }
 
 }

@@ -1,11 +1,12 @@
 package andrii.data.model;
 
 import andrii.json.LocalDateDeserializer;
+import andrii.xml.LocalDateAdapter;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonDeserialize;
-import org.codehaus.jackson.map.ext.JodaDeserializers;
-
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -19,13 +20,13 @@ public class Orders implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JsonDeserialize(using = LocalDateDeserializer.class)
     @Column(nullable = false)
+    @JsonDeserialize(using = LocalDateDeserializer.class)
     private LocalDate date;
 
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id", nullable = false)
+    @JsonIgnore
     private Client client;
 
     @Column
@@ -37,17 +38,17 @@ public class Orders implements Serializable {
     @Column
     private BigDecimal paid;
 
-    @JsonIgnore
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "ordering_menu",
             joinColumns = @JoinColumn(name = "ordering_id"),
             inverseJoinColumns = @JoinColumn(name = "menu_id")
     )
+    @JsonIgnore
     private List<Menu> menuList;
 
-    @JsonIgnore
     @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<OrdersMenu> ordersMenuList;
 
     public Orders() {
@@ -73,6 +74,7 @@ public class Orders implements Serializable {
         return date;
     }
 
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -81,6 +83,7 @@ public class Orders implements Serializable {
         return client;
     }
 
+    @XmlTransient
     public void setClient(Client client) {
         this.client = client;
     }
@@ -113,6 +116,7 @@ public class Orders implements Serializable {
         return menuList;
     }
 
+    @XmlTransient
     public void setMenuList(List<Menu> menuList) {
         this.menuList = menuList;
     }
@@ -121,6 +125,7 @@ public class Orders implements Serializable {
         return ordersMenuList;
     }
 
+    @XmlTransient
     public void setOrdersMenuList(List<OrdersMenu> orderingMenuList) {
         this.ordersMenuList = orderingMenuList;
     }

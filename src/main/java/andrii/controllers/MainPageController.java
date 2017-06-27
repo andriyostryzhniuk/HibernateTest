@@ -21,7 +21,8 @@ public class MainPageController {
     public String printMainPage(ModelMap modelMap) {
 
         modelMap.put("clientList", clientsService.getObjects());
-        clientsService.parseJSON();
+//        clientsService.parseJSON();
+//        clientsService.parseXML();
 
         return "main/mainPage";
     }
