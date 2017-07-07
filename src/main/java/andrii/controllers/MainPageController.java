@@ -19,7 +19,6 @@ public class MainPageController {
 
     @RequestMapping({"/", "/main", "/admin", "user", "/moderator"})
     public String printMainPage(ModelMap modelMap) {
-
         modelMap.put("clientList", clientsService.getObjects());
 //        clientsService.parseJSON();
 //        clientsService.parseXML();
